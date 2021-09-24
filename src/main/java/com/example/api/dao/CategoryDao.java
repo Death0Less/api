@@ -4,7 +4,7 @@ import com.example.api.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoryDao extends JpaRepository<Category, Long> {
-    boolean existsCategoryName(String categoryName);
+    boolean existsByCategoryName(String categoryName);
     void deleteByCategoryName (String categoryName);
     Category findByCategoryName(String categoryName);
 }

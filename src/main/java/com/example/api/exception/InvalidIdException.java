@@ -2,43 +2,44 @@ package com.example.api.exception;
 
 public class InvalidIdException extends RuntimeException {
 
-    private int id;
-    private String method;
+    private long id;
+    private String message;
 
-    public InvalidIdException(int id, String method) {
+    public InvalidIdException(long id, String message) {
         this.id = id;
-        this.method = method;
+        this.message = message;
     }
 
-    public InvalidIdException(String message, int id, String method) {
+    public InvalidIdException(String message, long id, String message1) {
         super(message);
         this.id = id;
-        this.method = method;
+        this.message = message1;
     }
 
-    public InvalidIdException(String message, Throwable cause, int id, String method) {
+    public InvalidIdException(String message, Throwable cause, long id, String message1) {
         super(message, cause);
         this.id = id;
-        this.method = method;
+        this.message = message1;
     }
 
-    public InvalidIdException(Throwable cause, int id, String method) {
+    public InvalidIdException(Throwable cause, long id, String message) {
         super(cause);
         this.id = id;
-        this.method = method;
+        this.message = message;
     }
 
-    public InvalidIdException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace, int id, String method) {
+    public InvalidIdException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace, long id, String message1) {
         super(message, cause, enableSuppression, writableStackTrace);
         this.id = id;
-        this.method = method;
+        this.message = message1;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public String getMethod() {
-        return method;
+    @Override
+    public String getMessage() {
+        return message;
     }
 }
