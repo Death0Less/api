@@ -13,6 +13,6 @@ public interface PostDao extends JpaRepository<Post, Long> {
     Post findByTitle(String title);
     void deleteByTitle(String title);
     List<Post> findAllByCategory(Category category);
-    List<Tag> findAllByTag(Tag tag);
-    List<User> findAllByUser(User user);
+    List<Post> findAllByTag(Tag tag);
+    List<Post> findAllByUser(User user);
 }
