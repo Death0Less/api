@@ -17,7 +17,7 @@ import java.util.List;
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String title;
@@ -30,8 +30,8 @@ public class Post {
     @OneToOne(cascade = CascadeType.ALL)
     private Category category;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Tag> tag;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Tag tag;
 
     private boolean isChecked;
 
@@ -39,7 +39,7 @@ public class Post {
 
     private int countViews;
 
-    public Post(String title, String description, User user, Category category, List<Tag> tag, boolean isChecked, Date date, int countViews) {
+    public Post(String title, String description, User user, Category category, Tag tag, boolean isChecked, Date date, int countViews) {
         this.title = title;
         this.description = description;
         this.user = user;

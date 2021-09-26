@@ -1,6 +1,8 @@
 package com.example.api.service;
 
 import com.example.api.dao.UserDao;
+import com.example.api.exception.InvalidIdException;
+import com.example.api.exception.InvalidTitleException;
 import com.example.api.exception.NotFoundException;
 import com.example.api.model.User;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,9 @@ public class UserService {
     private final UserDao userDao;
 
     public boolean save(User user) {
+        if (user.getName().length() < 2 && user.getName().isBlank()) {
+            throw new InvalidTitleException("Invalid name.", user.getName(), "save");
+        }
         if (userDao.existsByName(user.getName())) {
             throw new NotFoundException("User is not found.", user.getName(), "save");
         } else {
@@ -24,6 +29,9 @@ public class UserService {
     }
 
     public void deleteById(long id) {
+        if (id < 0) {
+            throw new InvalidIdException("Invalid id parameter, it can not be a negative value.", id, "deleteById");
+        }
         if (userDao.existsById(id)) {
             userDao.deleteById(id);
         } else {
@@ -32,6 +40,9 @@ public class UserService {
     }
 
     public void deleteByName(String name) {
+        if (name.length() < 2 && name.isBlank()) {
+            throw new InvalidTitleException("Invalid name.", name, "deleteByName");
+        }
         if (userDao.existsByName(name)) {
             userDao.deleteByName(name);
         } else {
@@ -40,6 +51,9 @@ public class UserService {
     }
 
     public User findById(long id) {
+        if (id < 0) {
+            throw new InvalidIdException("Invalid id parameter, it can not be a negative value.", id, "findById");
+        }
         if (userDao.existsById(id)) {
             return userDao.findById(id).get();
         } else {
@@ -48,6 +62,9 @@ public class UserService {
     }
 
     public User findByName(String name) {
+        if (name.length() < 2 && name.isBlank()) {
+            throw new InvalidTitleException("Invalid name.", name, "findByName");
+        }
         if (userDao.existsByName(name)) {
             return userDao.findByName(name);
         } else {

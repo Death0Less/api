@@ -1,4 +1,4 @@
-package com.example.api.configuration;
+package com.example.api.controller;
 
 import com.example.api.model.Category;
 import com.example.api.service.CategoryService;
@@ -7,11 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("/categories")
+@Transactional
 public class CategoryController {
 
     private final CategoryService categoryService;
