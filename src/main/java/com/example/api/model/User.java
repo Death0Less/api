@@ -16,7 +16,7 @@ import javax.validation.constraints.Positive;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Length(min = 3, max = 8)
@@ -28,16 +28,6 @@ public class User {
 
     @Positive
     private int age;
-
-    private Role role;
-
-    public User(String name, String email, String password, int age, Role role) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.age = age;
-        this.role = role;
-    }
 
     public User(String name, String email, String password, int age) {
         this.name = name;

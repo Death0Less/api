@@ -20,6 +20,9 @@ public class CategoryService {
     private final CategoryDao categoryDao;
 
     public boolean save(Category category) {
+        if (category.getCategoryName().length() < 2 && category.getCategoryName().isBlank()) {
+            throw new InvalidTitleException("Invalid name.", category.getCategoryName(), "save");
+        }
         if (categoryDao.existsByCategoryName(category.getCategoryName())) {
             throw new IsExistException("Category is already exist.", category.getCategoryName(), "save");
         } else {
@@ -51,7 +54,7 @@ public class CategoryService {
     }
 
     public Category findById(long id) {
-        if (id <= 0) {
+        if (id < 0) {
             throw new InvalidIdException("Invalid id parameter, it can not be a negative value.", id, "deleteById");
         }
         if (categoryDao.existsById(id)) {
